@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "https://fonts.google.com/specimen/Montserrat";
+  background: #fff;
+}
+
+/* Se utiliza para la animación */
+.curve {
+  right: 0px;
+  width: 300px;
+  height: 100%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* Permite añadir bordes a un texto */
+.text-stroke {
+  -webkit-text-stroke: 1px white;
+}
+
+/* Se crea una clase para quitar la scrollbar*/
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* Se crea la clase de la animación de la página principal */
+.animate-slade {
+  animation: slade 1s linear infinite;
+}
+
+/* Se crea una clase para animar el texto de la página principal */
+.animate-text {
+  animation: fade 5s ease-in-out infinite;
+}
+
+/* Se especifica las transformaciones para la animación del home */
+@keyframes slade {
+  0% {
+    left: 0;
+    width: 100%;
+  }
+  100% {
+    left: 0;
+    width: 400px;
+  }
+}
+
+/* Se especifica cuál es el atributo que se utiliza para animar el texto */
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
