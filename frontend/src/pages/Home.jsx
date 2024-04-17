@@ -37,10 +37,10 @@ function Home() {
           <a href="https://gpscontrol.co" className="text-blue-light">
             GPS control
           </a>
-          <a href="" className="text-blue-light">
+          <a href="https://github.com/JeyDveloper/fullstackpruebaN/tree/master/frontend" className="text-blue-light">
             Link Repo Front
           </a>
-          <a href="" className="text-blue-light">
+          <a href="https://github.com/JeyDveloper/fullstackpruebaN/tree/master/backend" className="text-blue-light">
             Link Repo Back
           </a>
         </div>
