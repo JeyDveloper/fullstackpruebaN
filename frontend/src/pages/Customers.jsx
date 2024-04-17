@@ -22,7 +22,7 @@ function Customers() {
   } = useCustomer();
 
   //Se crean manejadores de estados para facilitar respuestas y estados de la página
-  console.log(customers)
+
   /*En este estado prefuntamos si está dilegenciado un formulario, para de esta manera
   deshabilitar otros botones que pueden interrumpir las operaciones*/
   const [formIsActivate, setFormIsActivate] = useState(false);
@@ -275,7 +275,94 @@ function Customers() {
                 {/*Para mostrar los datos llaman y recorre los datos que contiene 
                 customer (que viene del context) y por cada registro inserta el valor correspondiente
                 en cada campo*/}
-                
+                {customers.map((customer) => (
+                  <div key={customer.id}>
+                    <tr className="grid grid-cols-3 gap-x-2 w-full p-0 justify-items-center my-2">
+                      <td className="w-full text-left pl-2">
+                        <p>{customer.car_brand}</p>
+                      </td>
+                      <td className="w-full text-left pl-14">
+                        <p>{customer.office}</p>
+                      </td>
+                      <td className="w-full flex gap-2 pl-2">
+                        <p className="w-3/4">{customer.customer_name}</p>
+                        <div className="flex w-1/4 gap-2">
+                          {/*Para los botones que se encuentran dentro de la tabla también verifican 
+                          que el formulario no esté activo para poder ser habilitados*/}
+                          {formIsActivate ? (
+                            /*Esta compración permite saber cuál registro se está editando, sin embarlo los
+                            botones no pueden ejecutar ninguna accíon ya que si está editando se debe utilizar
+                            los botones del formulario*/
+                            activeEditButton === customer.id ? (
+                              <>
+                                <button className="w-4" disabled>
+                                  <img
+                                    src="/Icon_editar1.svg"
+                                    alt="Botón editar"
+                                  />
+                                </button>
+                                <button className="w-4" disabled>
+                                  <img
+                                    src="/Icon_eliminar1.svg"
+                                    alt="Botón eliminar"
+                                  />
+                                </button>
+                              </>
+                            ) : (
+                              <>
+                                <button className="w-4" disabled>
+                                  <img
+                                    src="/Icon_editar.svg"
+                                    alt="Botón editar"
+                                  />
+                                </button>
+                                <button className="w-4" disabled>
+                                  <img
+                                    src="/Icon_eliminar.svg"
+                                    alt="Botón eliminar"
+                                  />
+                                </button>
+                              </>
+                            )
+                          ) : (
+                            <>
+                              {/*Aquí veo el valor por defecto de los botones*/}
+                              <button
+                                onClick={() => {
+                                  setActiveEditButton(customer.id);
+                                  setFormIsActivate(true);
+                                  setNewUser(false);
+                                  setParamId(customer.id);
+                                  setValue("brand", customer.car_brand);
+                                  setValue("office", customer.office);
+                                  setValue("name", customer.customer_name);
+                                }}
+                                className="w-4"
+                              >
+                                <img
+                                  src="/Icon_editar1.svg"
+                                  alt="Botón editar"
+                                />
+                              </button>
+                              <button
+                                onClick={() => deleteCustomer(customer.id)}
+                                className="w-4"
+                              >
+                                <img
+                                  src="/Icon_eliminar1.svg"
+                                  alt="Botón eliminar"
+                                />
+                              </button>
+                            </>
+                          )}
+                        </div>
+                      </td>
+                      <td className="w-full grid grid-cols-1 col-span-3">
+                        <hr className="border-pink border" />
+                      </td>
+                    </tr>
+                  </div>
+                ))}
               </tbody>
             </table>
           </div>
